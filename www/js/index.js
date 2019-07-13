@@ -104,14 +104,20 @@ var app = {
             return;
         }
 
-        // Update state.
-        this.roll();
-        // Paint.
-        this.paint();
+        // Don't update at 60 fps, that's too much.
+        if (this.waitFramesProgress <= 0) {
+            // Update state.
+            this.roll();
+            // Paint.
+            this.paint();
+
+            this.waitFramesProgress = this.FRAME_WAIT;
+        } else {
+            this.waitFramesProgress -= 1;
+        }
 
         // Register for next frame.
         requestAnimationFrame(() => this.onAnimationFrame());
-        // FIXME: We probably shouldn't update *that* often.
     },
 
     onStartOrContinue: function() {
@@ -125,6 +131,7 @@ var app = {
 
     onFinish: function() {
         this.shouldContinue = false;
+        this.waitFramesProgress = 0;
 
         // Finally, update accessibility.
         var result = this.values.reduce((acc, val) => acc + val);
@@ -140,6 +147,7 @@ var app = {
 
     // Number of frames to wait before updating.
     FRAME_WAIT: 4,
+    waitFramesProgress: 0,
     shouldContinue: false,
     updateRegistered: false,
     canvas: null,
