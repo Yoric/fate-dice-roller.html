@@ -194,7 +194,7 @@ var app = {
             alert("One second later");
             alert("Request state: " + request.readyState);
             alert("Request result: " + request.result);
-            alert("Request error: " + request.error);
+            alert("Request error: " + request.error ? request.error.name : "(none)");
         }, 1000);
     },
 
