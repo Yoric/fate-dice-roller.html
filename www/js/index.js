@@ -192,9 +192,13 @@ var app = {
         alert("...letting the request fly");
         setTimeout(function() {
             alert("One second later");
-            alert("Request state: " + request.readyState);
-            alert("Request result: " + request.result);
-            alert("Request error: " + request.error ? request.error.name : "(none)");
+            try {
+                alert("Request state: " + request.readyState);
+                alert("Request result: " + request.result);
+                alert("Request error: " + request.error ? request.error.name : "(none)");
+            } catch (ex) {
+                alert("Error: " + ex);
+            }
         }, 1000);
     },
 
