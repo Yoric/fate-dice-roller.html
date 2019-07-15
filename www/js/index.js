@@ -188,6 +188,11 @@ var app = {
                 console.log('Installation failed!', e);
             };
         };
+        alert("...letting the request fly");
+        setTimeout(function() {
+            alert("One second later");
+            alert("Result: " + request.result);
+        }, 1000);
     },
 
     // Number of frames to wait before updating.
