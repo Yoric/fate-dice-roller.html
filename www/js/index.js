@@ -151,10 +151,11 @@ var app = {
             return;
         }
         alert("Trying to install the application");
+        const MANIFEST_PATH = "http://yoric.github.com/fate-dice-roller.html/www/manifest.webapp";
         // Check if the application is already installed.
         var request;
         try {
-            request = window.navigator.mozApps.getSelf();
+            request = window.navigator.mozApps.checkInstalled(MANIFEST_PATH);
         } catch (ex) {
             alert("Request error " + ex);
         }
@@ -175,7 +176,7 @@ var app = {
             }
             alert("Setting up installer");
             console.log("Setting up installer", request);
-            var request = window.navigator.mozApps.install("http://yoric.github.com/fate-dice-roller.html/manifest.webapp");
+            var request = window.navigator.mozApps.install(MANIFEST_PATH);
             request.onsuccess = function () {
                 alert("Installed!");
                 // Save the App object that is returned
