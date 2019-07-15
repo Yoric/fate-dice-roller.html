@@ -158,7 +158,7 @@ var app = {
         } catch (ex) {
             alert("Request error " + ex);
         }
-        alert("Request placed");
+        alert("Request placed " + request);
         request.onerror = function onerror() {
             alert("Cannot determine whether application is installed");
             console.log("Cannot determine whether application is installed", request.error.message);
@@ -172,8 +172,6 @@ var app = {
             } else {
                 alert("Application isn't installed yet");
                 console.log("Application isn't installed yet", request);
-                eltInstall.classList.remove("invisible");
-                eltInstall.classList.add("visible");
             }
             alert("Setting up installer");
             console.log("Setting up installer", request);
