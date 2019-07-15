@@ -150,30 +150,37 @@ var app = {
             // We don't know how to install on this platform.
             return;
         }
+        alert("Installing the application");
         // Check if the application is already installed.
         var request = window.navigator.mozApps.getSelf();
         request.onerror = function onerror() {
+            alert("Cannot determine whether application is installed");
             console.log("Cannot determine whether application is installed", request.error.message);
-          };
-          request.onsuccess = function onsuccess() {
+        };
+        request.onsuccess = function onsuccess() {
             if (request.result && request.result.manifest.name) {
-              console.log("Application is already installed", request);
-              return;
+                alert("Application is already installed");
+                console.log("Application is already installed", request);
+                return;
             } else {
-              console.log("Application isn't installed yet", request);
-              eltInstall.classList.remove("invisible");
-              eltInstall.classList.add("visible");
+                alert("Application isn't installed yet");
+                console.log("Application isn't installed yet", request);
+                eltInstall.classList.remove("invisible");
+                eltInstall.classList.add("visible");
             }
+            alert("Setting up installer");
             console.log("Setting up installer", request);
             var request = window.navigator.mozApps.install("http://yoric.github.com/piranhas/manifests/piranha.webapp");
             request.onsuccess = function () {
-            // Save the App object that is returned
-            var appRecord = this.result;
-            console.log('Installation successful!', appRecord);
+                alert("Installed!");
+                // Save the App object that is returned
+                var appRecord = this.result;
+                console.log('Installation successful!', appRecord);
             };
             request.onerror = function (e) {
-            // Display the error information from the DOMError object
-            console.log('Installation failed!', e);
+                alert("Install failed!");
+                // Display the error information from the DOMError object
+                console.log('Installation failed!', e);
             };
         };
     },
