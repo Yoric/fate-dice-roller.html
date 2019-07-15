@@ -152,7 +152,12 @@ var app = {
         }
         alert("Trying to install the application");
         // Check if the application is already installed.
-        var request = window.navigator.mozApps.getSelf();
+        var request;
+        try {
+            request = window.navigator.mozApps.getSelf();
+        } catch (ex) {
+            alert("Request error " + ex);
+        }
         alert("Request placed");
         request.onerror = function onerror() {
             alert("Cannot determine whether application is installed");
