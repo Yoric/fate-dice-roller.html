@@ -192,7 +192,7 @@ var app = {
         alert("...letting the request fly");
         setTimeout(function() {
             alert("One second later");
-            alert("Result: " + JSON.stringify(request.result));
+            alert("Result: " + JSON.stringify(request));
         }, 1000);
     },
 
