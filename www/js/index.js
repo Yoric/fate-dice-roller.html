@@ -166,28 +166,32 @@ var app = {
         };
         request.onsuccess = function onsuccess() {
             alert("Request success");
-            if (request.result && request.result.manifest.name) {
-                alert("Application is already installed");
-                console.log("Application is already installed", request);
-                return;
-            } else {
-                alert("Application isn't installed yet");
-                console.log("Application isn't installed yet", request);
+            try {
+                if (request.result && request.result.manifest.name) {
+                    alert("Application is already installed");
+                    console.log("Application is already installed", request);
+                    return;
+                } else {
+                    alert("Application isn't installed yet");
+                    console.log("Application isn't installed yet", request);
+                }
+                alert("Setting up installer");
+                console.log("Setting up installer", request);
+                var request = window.navigator.mozApps.install(MANIFEST_PATH);
+                request.onsuccess = function () {
+                    alert("Installed!");
+                    // Save the App object that is returned
+                    var appRecord = this.result;
+                    console.log('Installation successful!', appRecord);
+                };
+                request.onerror = function (e) {
+                    alert("Install failed!");
+                    // Display the error information from the DOMError object
+                    console.log('Installation failed!', e);
+                };
+            } catch (ex) {
+                alert("Error: " + ex);
             }
-            alert("Setting up installer");
-            console.log("Setting up installer", request);
-            var request = window.navigator.mozApps.install(MANIFEST_PATH);
-            request.onsuccess = function () {
-                alert("Installed!");
-                // Save the App object that is returned
-                var appRecord = this.result;
-                console.log('Installation successful!', appRecord);
-            };
-            request.onerror = function (e) {
-                alert("Install failed!");
-                // Display the error information from the DOMError object
-                console.log('Installation failed!', e);
-            };
         };
         alert("...letting the request fly");
         // For some reason, `request.onsuccess` is not called?
