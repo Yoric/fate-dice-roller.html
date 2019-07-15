@@ -10,9 +10,9 @@
       "32": "/fate-dice-roller.html/www/img/icon_32.png",
       "60": "/fate-dice-roller.html/www/img/icon_60.png",
       "120": "/fate-dice-roller.html/www/img/icon_120.png",
-      "256": "/fate-dice-roller.html/www/img/icon_256.png",
+      "256": "/fate-dice-roller.html/www/img/icon_256.png"
     },
-    "launch_path": "/fate-dice-roller.html/www/index.html",
     "name": "Fate Dice Roller",
-    "version": "201907151834"
+    "version": "201907151834",
+    "launch_path": "/fate-dice-roller.html/www/index.html"
   }
