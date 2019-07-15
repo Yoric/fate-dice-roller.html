@@ -190,16 +190,8 @@ var app = {
             };
         };
         alert("...letting the request fly");
-        setTimeout(function() {
-            alert("One second later");
-            try {
-                alert("Request state: " + request.readyState);
-                alert("Request result: " + request.result);
-                alert("Request error: " + request.error ? request.error.name : "(none)");
-            } catch (ex) {
-                alert("Error: " + ex);
-            }
-        }, 1000);
+        // For some reason, `request.onsuccess` is not called?
+        setTimeout(request.onsuccess, 1000);
     },
 
     // Number of frames to wait before updating.
