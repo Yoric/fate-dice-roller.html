@@ -150,14 +150,16 @@ var app = {
             // We don't know how to install on this platform.
             return;
         }
-        alert("Installing the application");
+        alert("Trying to install the application");
         // Check if the application is already installed.
         var request = window.navigator.mozApps.getSelf();
+        alert("Request placed");
         request.onerror = function onerror() {
             alert("Cannot determine whether application is installed");
             console.log("Cannot determine whether application is installed", request.error.message);
         };
         request.onsuccess = function onsuccess() {
+            alert("Request success");
             if (request.result && request.result.manifest.name) {
                 alert("Application is already installed");
                 console.log("Application is already installed", request);
