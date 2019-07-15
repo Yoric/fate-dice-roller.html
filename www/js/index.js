@@ -191,7 +191,13 @@ var app = {
         };
         alert("...letting the request fly");
         // For some reason, `request.onsuccess` is not called?
-        setTimeout(request.onsuccess, 1000);
+        setTimeout(function timeout() {
+            if (request.error) {
+                request.onerror();
+            } else {
+                request.onsuccess();
+            }
+        }, 1000);
     },
 
     // Number of frames to wait before updating.
