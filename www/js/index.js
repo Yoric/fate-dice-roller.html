@@ -167,7 +167,7 @@ var app = {
         request.onsuccess = function onsuccess() {
             alert("Request success");
             try {
-                if (request.result && request.result.manifest.name) {
+                if (request && request.result && request.result.manifest.name) {
                     alert("Application is already installed");
                     console.log("Application is already installed", request);
                     return;
