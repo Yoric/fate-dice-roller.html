@@ -155,7 +155,7 @@ var app = {
         // Check if the application is already installed.
         var request;
         try {
-            request = window.navigator.mozApps.checkInstalled(MANIFEST_PATH);
+            request = window.navigator.mozApps.getSelf();
         } catch (ex) {
             alert("Request error " + ex);
         }
