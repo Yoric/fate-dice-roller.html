@@ -151,7 +151,7 @@ var app = {
             return;
         }
         alert("Trying to install the application");
-        const MANIFEST_PATH = "http://yoric.github.com/fate-dice-roller.html/www/manifest.webapp";
+        const MANIFEST_PATH = "https://yoric.github.com/fate-dice-roller.html/www/manifest.webapp";
         // Check if the application is already installed.
         var request;
         try {
