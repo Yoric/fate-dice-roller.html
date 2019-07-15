@@ -1,5 +1,8 @@
 var app = {
     initialize: function() {
+        // Offer install on relevant platforms (Firefox OS/KaiOS).
+        this.install();
+
         // Start loading images.
         this.imgPlus = new Image(256, 256);
         this.imgMinus = new Image(256, 256);
@@ -36,10 +39,7 @@ var app = {
             document.body.addEventListener("keyup", (e) => this.onFinish(e));
 
             // No need to keep rolling while we're looking away.
-            document.body.addEventListener("blur", (e) => this.onFinish(e));
-
-            // Register: full roll.
-            document.body.addEventListener("focus", (e) => this.onFullRoll(e));
+            window.addEventListener("blur", (e) => this.onFinish(e));
 
             // Initial paint.
             this.onFullRoll();
@@ -143,6 +143,39 @@ var app = {
         this.roll();
         this.paint();
         this.onFinish();
+    },
+
+    install: function() {
+        if (!("mozApps" in window.navigator)) {
+            // We don't know how to install on this platform.
+            return;
+        }
+        // Check if the application is already installed.
+        var request = window.navigator.mozApps.getSelf();
+        request.onerror = function onerror() {
+            console.log("Cannot determine whether application is installed", request.error.message);
+          };
+          request.onsuccess = function onsuccess() {
+            if (request.result && request.result.manifest.name) {
+              console.log("Application is already installed", request);
+              return;
+            } else {
+              console.log("Application isn't installed yet", request);
+              eltInstall.classList.remove("invisible");
+              eltInstall.classList.add("visible");
+            }
+            console.log("Setting up installer", request);
+            var request = window.navigator.mozApps.install("http://yoric.github.com/piranhas/manifests/piranha.webapp");
+            request.onsuccess = function () {
+            // Save the App object that is returned
+            var appRecord = this.result;
+            console.log('Installation successful!', appRecord);
+            };
+            request.onerror = function (e) {
+            // Display the error information from the DOMError object
+            console.log('Installation failed!', e);
+            };
+        };
     },
 
     // Number of frames to wait before updating.
