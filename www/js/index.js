@@ -175,7 +175,7 @@ var app = {
             }
             alert("Setting up installer");
             console.log("Setting up installer", request);
-            var request = window.navigator.mozApps.install("http://yoric.github.com/piranhas/manifests/piranha.webapp");
+            var request = window.navigator.mozApps.install("http://yoric.github.com/fate-dice-roller.html/manifest.webapp");
             request.onsuccess = function () {
                 alert("Installed!");
                 // Save the App object that is returned
