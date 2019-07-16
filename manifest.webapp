@@ -1,5 +1,5 @@
 {
-    "appcache_path": "/fate-dice-roller.html/www/manifests/cache.manifest",
+    "appcache_path": "/manifests/cache.manifest",
     "description": "Roll 4 Fate Dice (also known as Fudge Dice). Designed for use with the Fate Core/Fate Accelerated tabletop role-playing games.",
     "developer": {
       "name": "David Teller",
@@ -7,13 +7,13 @@
     },
     "fullscreen": "true",
     "icons": {
-      "32": "/fate-dice-roller.html/www/img/icon_32.png",
-      "60": "/fate-dice-roller.html/www/img/icon_60.png",
-      "120": "/fate-dice-roller.html/www/img/icon_120.png",
-      "128": "/fate-dice-roller.html/www/img/icon_128.png",
-      "256": "/fate-dice-roller.html/www/img/icon_256.png"
+      "32": "/img/icon_32.png",
+      "60": "/img/icon_60.png",
+      "120": "/img/icon_120.png",
+      "128": "/img/icon_128.png",
+      "256": "/img/icon_256.png"
     },
     "name": "Fate Dice Roller",
     "version": "201907151835",
-    "launch_path": "/fate-dice-roller.html/www/index.html"
+    "launch_path": "/index.html"
   }
