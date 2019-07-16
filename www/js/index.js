@@ -7,6 +7,7 @@ var app = {
         this.imgPlus = new Image(256, 256);
         this.imgMinus = new Image(256, 256);
         this.imgEquals = new Image(256, 256);
+        this.imgBorder = new Image(256, 256);
 
         var imgPlusPromise = new Promise((resolve) => {
             this.imgPlus.addEventListener("load", resolve);
@@ -20,6 +21,10 @@ var app = {
             this.imgEquals.addEventListener("load", resolve);
             this.imgEquals.src = "img/Zero.png";
         });
+        var imgBorderPromise = new Promise((resolve) => {
+            this.imgBorder.addEventListener("load", resolve);
+            this.imgBorder.src = "img/Border.png";
+        });
 
         this.canvas = document.getElementById("canvas");
         this.context = canvas.getContext("2d", { alpha: false });
@@ -27,7 +32,7 @@ var app = {
         window.addEventListener("resize", () => this.initializeSize());
 
         // ...once preloading is complete
-        Promise.all([imgPlusPromise, imgMinusPromise, imgEqualsPromise]).then(() => {
+        Promise.all([imgPlusPromise, imgMinusPromise, imgEqualsPromise, imgBorderPromise]).then(() => {
             // Register: start or continue roll.
             document.body.addEventListener("mousedown", (e) => this.onStartOrContinue(e));
             document.body.addEventListener("touchstart", (e) => this.onStartOrContinue(e));
@@ -40,6 +45,7 @@ var app = {
 
             // No need to keep rolling while we're looking away.
             window.addEventListener("blur", (e) => this.onFinish(e));
+            document.body.addEventListener("mouseleave", (e) => this.onFinish(e));
 
             // Initial paint.
             this.onFullRoll();
@@ -92,6 +98,7 @@ var app = {
                 img = this.imgPlus;
             }
             this.context.drawImage(img, x, y);
+            this.context.drawImage(this.imgBorder, x, y);
         }
     },
 
@@ -214,6 +221,7 @@ var app = {
     imgPlus: null,
     imgMinus: null,
     imgEquals: null,
+    imgBorder: null,
     coordinates: [{x: 0, y: 0}, {x: 256, y: 0}, {x: 0, y: 256}, {x: 256, y: 256}],
     values: [0, 0, 0, 0],
     scale: 1,
