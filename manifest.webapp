@@ -1,5 +1,5 @@
 {
-    "appcache_path": "/www/manifests/cache.manifest",
+    "appcache_path": "/manifests/cache.manifest",
     "description": "Roll 4 Fate Dice (also known as Fudge Dice). Designed for use with the Fate Core/Fate Accelerated tabletop role-playing games.",
     "developer": {
       "name": "David Teller",
