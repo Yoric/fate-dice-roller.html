@@ -153,6 +153,8 @@ var app = {
     },
 
     install: function() {
+        // No installation at the moment.
+        return;
         if (!("mozApps" in window.navigator)) {
             // We don't know how to install on this platform.
             return;
